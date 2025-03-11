@@ -1,6 +1,6 @@
 # 
 **できるようになったこと**
-- https://what-to-eated.vercel.app/
+- https://high-speed-greetings-quiz.vercel.app/
 - **変更前**
   
 - **変更後**
