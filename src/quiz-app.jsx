@@ -35,8 +35,8 @@ const quizData = [
   },
   {
     image: "/images/沖縄.png",
-    correctAnswer: "ぐぁっちーさびたん",
-    incorrectAnswers: ["めーごさー", "ひんぎれ"],
+    correctAnswer: "くゎっちーさびたん",
+    incorrectAnswers: ["ちゅーをぅがなびら", "ひんぎれ"],
   },
 
 ]
