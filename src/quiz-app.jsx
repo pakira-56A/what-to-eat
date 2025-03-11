@@ -5,8 +5,13 @@ import { useState, useEffect } from "react"
 const quizData = [
   {
     image: "/images/おはよう.png",
-    correctAnswer: "おはようございます",
-    incorrectAnswers: ["ありがとうございます", "おめでとうございます"],
+    correctAnswer: "おはよう",
+    incorrectAnswers: ["ありがとう", "おめでとう"],
+  },
+  {
+    image: "/images/おやすみ.png",
+    correctAnswer: "おやすみ",
+    incorrectAnswers: ["はじめまして", "おくやみ"],
   },
   {
     image: "/images/ごちそうさま.png",
