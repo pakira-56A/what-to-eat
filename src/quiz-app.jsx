@@ -95,9 +95,12 @@ export default function QuizApp() {
     >
       {(gameState === "playing" || gameState === "answered") && (
         <>
-          <h1 style={{ marginBottom: "10px" }}>
-          {currentQuestion + 1} 人目に ご挨拶しろ
+          <h1 style={{ marginBottom: "5px" }}>
+            高速ご挨拶クイズ
           </h1>
+          <h2 style={{ marginBottom: "5px", color: "orange" }}>
+            {currentQuestion + 1} 人目に ご挨拶しよう！
+          </h2>
           <div style={{ marginBottom: "5px", position: "relative" }}>
             <img
               src={quizData[currentQuestion].image || "/placeholder.svg"}
