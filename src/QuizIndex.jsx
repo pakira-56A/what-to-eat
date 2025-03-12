@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { TopPage } from "./components/TopPage"
 import { QuizSelectionPage } from "./components/QuizSelectionPage"
+import { AnsweredPage } from "./components/AnsweredPage"
 
 const quizData = [
   {
@@ -49,10 +50,10 @@ const QuizApp = () => {
   const [gameState, setGameState] = useState("start")     // start, playing, answered, finished
   const [shuffledAnswers, setShuffledAnswers] = useState([])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
-  const [isCorrect, setIsCorrect] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
   const [timeCount, setTimeCount] = useState(3)             // 出題タイマー
   const [isTimeUp, setIsTimeUp] = useState(false)         // タイムアップフラグ
-  const [resultTimeCount, setResultTimeCount] = useState(3) // 結果表示の3秒カウントダウン
+  const [nextTimeCount, setNextTimeCount] = useState(2) // 結果表示の2秒カウントダウン
 
   useEffect(() => {
     if (justQuestion < quizData.length) {
@@ -73,13 +74,13 @@ const QuizApp = () => {
             // タイムアップ処理
             setIsTimeUp(true)
             setGameState("answered")
-            setResultTimeCount(3) // 結果表示の3秒カウントダウンをセット
+            setNextTimeCount(2) // 結果表示の2秒カウントダウンをセット
 
             // 結果表示用のカウントダウンタイマーを開始
-            const resultTimer = setInterval(() => {
-              setResultTimeCount((prevTime) => {
+            const nextTimer = setInterval(() => {
+              setNextTimeCount((prevTime) => {
                 if (prevTime <= 1) {
-                  clearInterval(resultTimer)
+                  clearInterval(nextTimer)
                   nextQuestion()
                   return 0
                 }
@@ -102,19 +103,19 @@ const QuizApp = () => {
   const handleAnswer = (selectedAnswer) => {
     setSelectedAnswer(selectedAnswer)
     const correct = selectedAnswer === quizData[justQuestion].justAnswer
-    setIsCorrect(correct)
+    setIsSuccess(correct)
     if (correct) {
       setScore(score + 1)
     }
     setGameState("answered")
     setIsTimeUp(false)       // タイムアップをリセット
-    setResultTimeCount(3)     // 結果表示の3秒カウントダウンをセット
+    setNextTimeCount(2)     // 結果表示の2秒カウントダウンをセット
 
     // 結果表示用のカウントダウンタイマーを開始
-    const resultTimer = setInterval(() => {
-      setResultTimeCount((prevTime) => {
+    const nextTimer = setInterval(() => {
+      setNextTimeCount((prevTime) => {
         if (prevTime <= 1) {
-          clearInterval(resultTimer)
+          clearInterval(nextTimer)
           nextQuestion()
           return 0
         }
@@ -197,76 +198,16 @@ const QuizApp = () => {
       )}
 
       {gameState === "answered" && (
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "center",
-            fontFamily: "Arial, sans-serif",
-          }}
-        >
-          <div
-            style={{
-              fontSize: "30px",
-              fontWeight: "bold",
-              color: "orange",
-            }}
-          >
-            {resultTimeCount} 秒後に
-          </div>
-          <h3 style={{ color: "orange" }}>{`次のご挨拶いくよ`}</h3>
-
-          <div style={{ marginBottom: "20px", position: "relative" }}>
-            <img
-              src={quizData[justQuestion].image || "/placeholder.svg"}
-              alt="人物"
-              style={{ width: "auto", height: "250px" }}
-            />
-            <div
-              style={{   // タイムアップか正解不正解の表示
-                position: "absolute",
-                width: "120px",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
-                backgroundColor: isTimeUp
-                  ? "rgba(130, 130, 130, 0.9)"   // グレー
-                  : isCorrect
-                    ? "rgba(0, 255, 0, 0.9)"     // 緑
-                    : "rgba(255, 0, 0, 0.9)",    // 赤
-                color:        "white",
-                padding:      "20px",
-                borderRadius: "5px",
-                fontSize:     "30px",
-                fontWeight:   "bold",
-              }}
-            >
-              {isTimeUp ? "時間切れ⏰" : isCorrect ? "正しい😊" : "違うで😠"}
-            </div>
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "15px", width: "230px" }}>
-            {shuffledAnswers.map((answer, index) => (
-              <button
-                key={index}
-                style={{
-                  ...commonButtonStyle,
-                  backgroundColor:
-                    selectedAnswer === answer
-                      ? isCorrect && answer === quizData[justQuestion].justAnswer
-                        ? "lightgreen"
-                        : "red"
-                      : "skyblue",
-                  opacity: 0.5,
-                  boxShadow: "none",
-                }}
-                disabled
-              >
-                {answer}
-              </button>
-            ))}
-          </div>
-        </div>
+        <AnsweredPage
+        // 名前 = {親コンポーネントで定義した関数・変数（バリュー)}
+        nextTimeCount={nextTimeCount}
+        quizData={quizData}
+        justQuestion={justQuestion}
+        isTimeUp={isTimeUp}
+        isSuccess={isSuccess}
+        shuffledAnswers={shuffledAnswers}
+        selectedAnswer={selectedAnswer}
+        />
       )}
 
       {gameState === "finished" && (
