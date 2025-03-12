@@ -1,4 +1,3 @@
-// 選ばれた選択肢の答えを表示しながら、３秒をカウントする画面です！（２秒に変更しますが）
 const commonButtonStyle = {
   padding: "10px 25px",
   border: "none",
@@ -10,8 +9,7 @@ const commonButtonStyle = {
   transition: "background-color 0.3s, box-shadow 0.3s",
 }
 
-export const AnsweredPage = ({
-  nextTimeCount, quizData, justQuestion, isTimeUp, isSuccess, shuffledAnswers, selectedAnswer}) => {
+export const AnsweredPage = ({nextTimeCount, quizData, justQuestion, isTimeUp, isSuccess, shuffledAnswers, selectedAnswer}) => {
 
   return (
     <div
