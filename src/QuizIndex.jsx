@@ -7,77 +7,77 @@ import { QuizSelectionPage } from "./components/QuizSelectionPage"
 const quizData = [
   {
     image: "/images/おはよう.png",
-    correctAnswer: "おはよう",
-    incorrectAnswers: ["ありがとう", "おめでとう"],
+    justAnswer: "おはよう",
+    fakeAnswer: ["ありがとう", "おめでとう"],
   },
   {
     image: "/images/おやすみ.png",
-    correctAnswer: "おやすみ",
-    incorrectAnswers: ["おみやげ", "おくやみ"],
+    justAnswer: "おやすみ",
+    fakeAnswer: ["おみやげ", "おくやみ"],
   },
   {
     image: "/images/ごちそうさま.png",
-    correctAnswer: "ごちそうさまでした",
-    incorrectAnswers: ["ごろつきそうでした", "ごまきがすきでした"],
+    justAnswer: "ごちそうさまでした",
+    fakeAnswer: ["ごろつきそうでした", "ごまきがすきでした"],
   },
   {
     image: "/images/夜露死苦.png",
-    correctAnswer: "夜露死苦",
-    incorrectAnswers: ["液露ﾀﾋ若", "夜露死若"],
+    justAnswer: "夜露死苦",
+    fakeAnswer: ["液露ﾀﾋ若", "夜露死若"],
   },
   {
     image: "/images/迷子の外国人.png",
-    correctAnswer: "Excuse me",
-    incorrectAnswers: ["Export me", "Ecstasy me"],
+    justAnswer: "Excuse me",
+    fakeAnswer: ["Export me", "Ecstasy me"],
   },
   {
     image: "/images/マサイ族.png",
-    correctAnswer: "éro",
-    incorrectAnswers: ["nabô ", "aré"],
+    justAnswer: "éro",
+    fakeAnswer: ["nabô", "aré"],
   },
   {
     image: "/images/沖縄.png",
-    correctAnswer: "くゎっちーさびたん",
-    incorrectAnswers: ["ちゅーをぅがなびら", "ひんぎれ"],
+    justAnswer: "くゎっちーさびたん",
+    fakeAnswer: ["ちゅーをぅがなびら", "ひんぎれ"],
   },
 
 ]
 
 const QuizApp = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(0)
+  const [justQuestion, setJustQuestion] = useState(0)
   const [score, setScore] = useState(0)
   const [gameState, setGameState] = useState("start")     // start, playing, answered, finished
   const [shuffledAnswers, setShuffledAnswers] = useState([])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [isCorrect, setIsCorrect] = useState(false)
-  const [timeLeft, setTimeLeft] = useState(3)             // 出題タイマー
+  const [timeCount, setTimeCount] = useState(3)             // 出題タイマー
   const [isTimeUp, setIsTimeUp] = useState(false)         // タイムアップフラグ
-  const [resultTimeLeft, setResultTimeLeft] = useState(3) // 結果表示の3秒カウントダウン
+  const [resultTimeCount, setResultTimeCount] = useState(3) // 結果表示の3秒カウントダウン
 
   useEffect(() => {
-    if (currentQuestion < quizData.length) {
+    if (justQuestion < quizData.length) {
       shuffleAnswers()
     }
-  }, [currentQuestion])
+  }, [justQuestion])
 
   useEffect(() => {
     let timer
     if (gameState === "playing") {
-      setTimeLeft(3)             // 出題タイマー
+      setTimeCount(3)             // 出題タイマー
       setIsTimeUp(false)
 
       timer = setInterval(() => {
-        setTimeLeft((prevTime) => {
+        setTimeCount((prevTime) => {
           if (prevTime <= 1) {
             clearInterval(timer)
             // タイムアップ処理
             setIsTimeUp(true)
             setGameState("answered")
-            setResultTimeLeft(3) // 結果表示の3秒カウントダウンをセット
+            setResultTimeCount(3) // 結果表示の3秒カウントダウンをセット
 
             // 結果表示用のカウントダウンタイマーを開始
             const resultTimer = setInterval(() => {
-              setResultTimeLeft((prevTime) => {
+              setResultTimeCount((prevTime) => {
                 if (prevTime <= 1) {
                   clearInterval(resultTimer)
                   nextQuestion()
@@ -97,22 +97,22 @@ const QuizApp = () => {
     return () => {
       clearInterval(timer)
     }
-  }, [gameState, currentQuestion])
+  }, [gameState, justQuestion])
 
   const handleAnswer = (selectedAnswer) => {
     setSelectedAnswer(selectedAnswer)
-    const correct = selectedAnswer === quizData[currentQuestion].correctAnswer
+    const correct = selectedAnswer === quizData[justQuestion].justAnswer
     setIsCorrect(correct)
     if (correct) {
       setScore(score + 1)
     }
     setGameState("answered")
     setIsTimeUp(false)       // タイムアップをリセット
-    setResultTimeLeft(3)     // 結果表示の3秒カウントダウンをセット
+    setResultTimeCount(3)     // 結果表示の3秒カウントダウンをセット
 
     // 結果表示用のカウントダウンタイマーを開始
     const resultTimer = setInterval(() => {
-      setResultTimeLeft((prevTime) => {
+      setResultTimeCount((prevTime) => {
         if (prevTime <= 1) {
           clearInterval(resultTimer)
           nextQuestion()
@@ -124,14 +124,14 @@ const QuizApp = () => {
   }
 
   const shuffleAnswers = () => {   // 正解と間違いを
-    const currentQuizData = quizData[currentQuestion]
-    const allAnswers = [currentQuizData.correctAnswer, ...currentQuizData.incorrectAnswers]
+    const currentQuizData = quizData[justQuestion]
+    const allAnswers = [currentQuizData.justAnswer, ...currentQuizData.fakeAnswer]
     setShuffledAnswers(allAnswers.sort(() => Math.random() - 0.5))
   }
 
   const nextQuestion = () => {
-    if (currentQuestion + 1 < quizData.length) {
-      setCurrentQuestion(currentQuestion + 1)
+    if (justQuestion + 1 < quizData.length) {
+      setJustQuestion(justQuestion + 1)
       setSelectedAnswer(null)
       setGameState("playing")
       setIsTimeUp(false)      // タイムアップをリセット
@@ -141,7 +141,7 @@ const QuizApp = () => {
   }
 
   const restartQuiz = () => {
-    setCurrentQuestion(0)
+    setJustQuestion(0)
     setScore(0)
     setGameState("playing")
     setSelectedAnswer(null)
@@ -149,7 +149,7 @@ const QuizApp = () => {
   }
 
   const startGame = () => {
-    setCurrentQuestion(0)
+    setJustQuestion(0)
     setScore(0)
     setGameState("playing")
     setSelectedAnswer(null)
@@ -179,7 +179,8 @@ const QuizApp = () => {
 
       {gameState === "start" && (
         <TopPage
-          // 名前 = {バリュー(値)}
+          // 名前 = {親コンポーネントで定義した関数・変数（バリュー)}
+          // 名前 = "親コンポーネントで文字列を渡す"
           handleClick={startGame}
         />
       )}
@@ -188,6 +189,10 @@ const QuizApp = () => {
       {gameState === "playing" && (
         <QuizSelectionPage
           selectedAnswer={handleAnswer}
+          timeCount={timeCount}
+          quizData={quizData}
+          justQuestion={justQuestion}
+          shuffledAnswers={shuffledAnswers}
         />
       )}
 
@@ -208,13 +213,13 @@ const QuizApp = () => {
               color: "orange",
             }}
           >
-            {resultTimeLeft} 秒後に
+            {resultTimeCount} 秒後に
           </div>
           <h3 style={{ color: "orange" }}>{`次のご挨拶いくよ`}</h3>
 
           <div style={{ marginBottom: "20px", position: "relative" }}>
             <img
-              src={quizData[currentQuestion].image || "/placeholder.svg"}
+              src={quizData[justQuestion].image || "/placeholder.svg"}
               alt="人物"
               style={{ width: "auto", height: "250px" }}
             />
@@ -248,7 +253,7 @@ const QuizApp = () => {
                   ...commonButtonStyle,
                   backgroundColor:
                     selectedAnswer === answer
-                      ? isCorrect && answer === quizData[currentQuestion].correctAnswer
+                      ? isCorrect && answer === quizData[justQuestion].justAnswer
                         ? "lightgreen"
                         : "red"
                       : "skyblue",
