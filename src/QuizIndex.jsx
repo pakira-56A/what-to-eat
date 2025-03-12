@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { TopPage } from "./components/TopPage"
 import { QuizSelectionPage } from "./components/QuizSelectionPage"
 import { AnsweredPage } from "./components/AnsweredPage"
+import { FinishedPage } from "./components/FinishedPage"
 
 const quizData = [
   {
@@ -51,9 +52,9 @@ const QuizApp = () => {
   const [shuffledAnswers, setShuffledAnswers] = useState([])
   const [selectedAnswer, setSelectedAnswer] = useState(null)
   const [isSuccess, setIsSuccess] = useState(false)
-  const [timeCount, setTimeCount] = useState(3)             // 出題タイマー
+  const [timeCount, setTimeCount] = useState(3)           // 出題タイマー
   const [isTimeUp, setIsTimeUp] = useState(false)         // タイムアップフラグ
-  const [nextTimeCount, setNextTimeCount] = useState(2) // 結果表示の2秒カウントダウン
+  const [nextTimeCount, setNextTimeCount] = useState(2)   // 結果表示の2秒カウントダウン
 
   useEffect(() => {
     if (justQuestion < quizData.length) {
@@ -74,7 +75,7 @@ const QuizApp = () => {
             // タイムアップ処理
             setIsTimeUp(true)
             setGameState("answered")
-            setNextTimeCount(2) // 結果表示の2秒カウントダウンをセット
+            setNextTimeCount(2)   // 結果表示の2秒カウントダウンをセット
 
             // 結果表示用のカウントダウンタイマーを開始
             const nextTimer = setInterval(() => {
@@ -109,7 +110,7 @@ const QuizApp = () => {
     }
     setGameState("answered")
     setIsTimeUp(false)       // タイムアップをリセット
-    setNextTimeCount(2)     // 結果表示の2秒カウントダウンをセット
+    setNextTimeCount(2)      // 結果表示の2秒カウントダウンをセット
 
     // 結果表示用のカウントダウンタイマーを開始
     const nextTimer = setInterval(() => {
@@ -186,7 +187,6 @@ const QuizApp = () => {
         />
       )}
 
-
       {gameState === "playing" && (
         <QuizSelectionPage
           selectedAnswer={handleAnswer}
@@ -199,7 +199,6 @@ const QuizApp = () => {
 
       {gameState === "answered" && (
         <AnsweredPage
-        // 名前 = {親コンポーネントで定義した関数・変数（バリュー)}
         nextTimeCount={nextTimeCount}
         quizData={quizData}
         justQuestion={justQuestion}
@@ -211,44 +210,14 @@ const QuizApp = () => {
       )}
 
       {gameState === "finished" && (
-        <div
-          style={{
-            backgroundImage: `url(/images/背景.png)`,
-            backgroundSize: 'cover',
-            position: 'fixed',
-            width: '100vw', // 画面幅に合わせる
-            height: '100%',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            }}>
-
-          <h3 style={{ fontSize: "30px", color: "orange", marginBottom: "30px" }}>
-            {quizData.length}人中、 {score}人に好かれた！
-          </h3>
-
-          <button
-            onClick={restartQuiz}
-            style={{
-              ...commonButtonStyle,
-              backgroundColor: "violet",
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = "orange"
-              e.currentTarget.style.boxShadow = "none"
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = "violet"
-              e.currentTarget.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)"
-            }}
-          >
-            もっかい好かれに行く
-          </button>
-        </div>
+        <FinishedPage
+          restartQuiz={restartQuiz}
+          quizData={quizData}
+          score={score}
+        />
       )}
     </div>
   )
 }
 
 export default QuizApp
-
