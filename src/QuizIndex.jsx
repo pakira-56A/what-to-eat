@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import { TopPage } from "./components/TopPage"
+import { QuizSelectionPage } from "./components/QuizSelectionPage"
 
 const quizData = [
   {
@@ -121,7 +123,7 @@ const QuizApp = () => {
     }, 1000)
   }
 
-  const shuffleAnswers = () => {
+  const shuffleAnswers = () => {   // 正解と間違いを
     const currentQuizData = quizData[currentQuestion]
     const allAnswers = [currentQuizData.correctAnswer, ...currentQuizData.incorrectAnswers]
     setShuffledAnswers(allAnswers.sort(() => Math.random() - 0.5))
@@ -176,74 +178,17 @@ const QuizApp = () => {
       <h1 style={{ color: "red", backgroundColor: "lightyellow", marginBottom: "15px" }}>高速ご挨拶クイズ</h1>
 
       {gameState === "start" && (
-        <div>
-          <h3 style={{ color: "orange", marginBottom: "20px" }}>全人類の基本をクリアせよ！</h3>
-          <div style={{ marginBottom: "30px" }}>
-            <img src="/images/ご挨拶.png" alt="スタート画面" style={{ width: "auto", height: "250px" }} />
-          </div>
-          <button
-            onClick={startGame}
-            style={{
-              ...commonButtonStyle,
-              backgroundColor: "violet",
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.backgroundColor = "orange"
-              e.currentTarget.style.boxShadow = "none"
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.backgroundColor = "violet"
-              e.currentTarget.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)"
-            }}
-          >
-            みんなに好かれにいく
-          </button>
-        </div>
+        <TopPage
+          // 名前 = {バリュー(値)}
+          handleClick={startGame}
+        />
       )}
 
-      {gameState === "playing" && (
-        <div>
-          <div
-            style={{
-              fontSize: "30px",
-              fontWeight: "bold",
-              color: timeLeft <= 2 ? "red" : "orange",
-            }}
-          >
-            {timeLeft} 秒以内に
-          </div>
-          <h3 style={{ color: "orange" }}>{`ご挨拶しよう！`}</h3>
 
-          <div style={{ marginBottom: "20px" }}>
-            <img
-              src={quizData[currentQuestion].image || "/placeholder.svg"}
-              alt="人物"
-              style={{ width: "auto", height: "250px" }}
-            />
-          </div>
-          <div style={{ display: "flex", flexDirection: "column", gap: "15px", width: "230px", margin: "0 auto" }}>
-            {shuffledAnswers.map((answer, index) => (
-              <button
-                key={index}
-                onClick={() => handleAnswer(answer)}
-                style={{
-                  ...commonButtonStyle,
-                  backgroundColor: "#00BBFF", // ほどよい青
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.backgroundColor = "orange"
-                  e.currentTarget.style.boxShadow = "none"
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.backgroundColor = "#00BBFF"  // ほどよい青
-                  e.currentTarget.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)"
-                }}
-              >
-                {answer}
-              </button>
-            ))}
-          </div>
-        </div>
+      {gameState === "playing" && (
+        <QuizSelectionPage
+          selectedAnswer={handleAnswer}
+        />
       )}
 
       {gameState === "answered" && (
@@ -281,15 +226,15 @@ const QuizApp = () => {
                 left: "50%",
                 transform: "translate(-50%, -50%)",
                 backgroundColor: isTimeUp
-                  ? "rgba(130, 130, 130, 0.9)" // グレー
+                  ? "rgba(130, 130, 130, 0.9)"   // グレー
                   : isCorrect
-                    ? "rgba(0, 255, 0, 0.9)"   // 緑
-                    : "rgba(255, 0, 0, 0.9)",  // 赤
-                color: "white",
-                padding: "20px",
+                    ? "rgba(0, 255, 0, 0.9)"     // 緑
+                    : "rgba(255, 0, 0, 0.9)",    // 赤
+                color:        "white",
+                padding:      "20px",
                 borderRadius: "5px",
-                fontSize: "30px",
-                fontWeight: "bold",
+                fontSize:     "30px",
+                fontWeight:   "bold",
               }}
             >
               {isTimeUp ? "時間切れ⏰" : isCorrect ? "正しい😊" : "違うで😠"}
