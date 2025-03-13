@@ -16,7 +16,7 @@ export const FinishedPage = ({restartQuiz, quizData, score}) => {
         alignItems: 'center',
       }}>
 
-      <h3 style={{ fontSize: "30px", color: "orange", marginBottom: "0px" }}>
+      <h3 style={{ fontSize: "30px", color: "red", backgroundColor: "#CCFFFF",marginBottom: "0px" }}>
         {quizData.length}人中、 {score}人に好かれた！
       </h3>
 
