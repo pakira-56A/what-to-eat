@@ -1,6 +1,8 @@
 import { globalButtonStyle } from '../styles/globalButton';
+import { XShareButton } from '../styles/xShareButton';
 
 export const FinishedPage = ({restartQuiz, quizData, score}) => {
+
   return (
     <div
       style={{
@@ -14,9 +16,13 @@ export const FinishedPage = ({restartQuiz, quizData, score}) => {
         alignItems: 'center',
       }}>
 
-      <h3 style={{ fontSize: "30px", color: "orange", marginBottom: "30px" }}>
+      <h3 style={{ fontSize: "30px", color: "orange", marginBottom: "0px" }}>
         {quizData.length}人中、 {score}人に好かれた！
       </h3>
+
+      <div style={{justifyContent: "center", marginBottom: "40px" }}>
+        <XShareButton quizData={quizData} score={score} />
+      </div>
 
       <button
         onClick={restartQuiz}
@@ -30,7 +36,7 @@ export const FinishedPage = ({restartQuiz, quizData, score}) => {
         }}
         onMouseOut={(e) => {
           e.currentTarget.style.backgroundColor = "violet"
-          e.currentTarget.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)"
+          e.currentTarget.style.boxShadow = "0 4px 8px rgb(250, 150, 0, 0.6)"
         }}
       >
         もっかい好かれに行く
