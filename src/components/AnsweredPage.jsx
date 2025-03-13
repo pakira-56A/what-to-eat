@@ -57,7 +57,7 @@ export const AnsweredPage = ({nextTimeCount, quizData, justQuestion, isTimeUp, i
             fontWeight:   "bold",
           }}
         >
-          {isTimeUp ? "時間切れ⏰" : isSuccess ? "正しい😊" : "違うで😠"}
+          {isTimeUp ? "時間切れ" : isSuccess ? "しゅきぃ" : "ちゃうで"}
         </div>
       </div>
       <div style={{ display: "flex", flexDirection: "column", gap: "15px", width: "230px" }}>

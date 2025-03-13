@@ -38,6 +38,11 @@ const quizData = [
     fakeAnswer: ["nabô", "aré"],
   },
   {
+    image: "/images/タイ.png",
+    justAnswer: "サワディー カー",
+    fakeAnswer: ["サワディークラップ", "サワムラークラップ"],
+  },
+  {
     image: "/images/沖縄.png",
     justAnswer: "くゎっちーさびたん",
     fakeAnswer: ["ちゅーをぅがなびら", "ひんぎれ"],
