@@ -21,7 +21,7 @@ export const TopPage = ({ handleClick }) => {
           }}
           onMouseOut={(e) => {
             e.currentTarget.style.backgroundColor = "violet"
-            e.currentTarget.style.boxShadow = "0 4px 8px rgba(0, 0, 0, 0.2)"
+            e.currentTarget.style.boxShadow = "0 4px 8px rgb(250, 150, 0, 0.6)"
           }}
         >
           みんなに好かれにいく
