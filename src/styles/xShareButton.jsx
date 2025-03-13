@@ -22,6 +22,7 @@ export const XShareButton = ({ quizData, score }) => {
       }}
       onMouseOver={() => setIsHovered(true)} // Hover stateをtrueに
       onMouseOut={() => setIsHovered(false)} // Hover stateをfalseに
+      target="_blank"
     >
       <img
         src={isHovered ? '/images/xshare-hover.svg' : '/images/xshare.svg'}
