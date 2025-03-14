@@ -43,6 +43,11 @@ const quizData = [
     fakeAnswer: ["サワディークラップ", "サワムラークラップ"]
   },
   {
+    image: "/images/蝶野.png",
+    justAnswer: "Goddamn",
+    fakeAnswer: ["Gundam", "Grayman"]
+  },
+  {
     image: "/images/沖縄.png",
     justAnswer: "くゎっちーさびたん",
     fakeAnswer: ["ちゅーをぅがなびら", "ひんぎれ"]
