@@ -1,8 +1,16 @@
-import { globalButtonStyle } from '../styles/globalButton';
+import { useState } from 'react';
+import { globalButtonStyle, globalButtonHoverStyle } from '../styles/globalButton';
 import { XShareButton } from '../styles/xShareButton';
 
 export const FinishedPage = ({restartQuiz, quizData, score}) => {
 
+  const [isHovered, setIsHovered] = useState(false);
+
+  const buttonStyle = {   // このコンポーネントでのボタンのスタイルを指定
+    ...globalButtonStyle,
+    backgroundColor: isHovered ? globalButtonHoverStyle.backgroundColor : "violet",
+    boxShadow: isHovered ? globalButtonHoverStyle.boxShadow : globalButtonStyle.boxShadow,
+  };
   return (
     <div
       style={{
@@ -26,18 +34,9 @@ export const FinishedPage = ({restartQuiz, quizData, score}) => {
 
       <button
         onClick={restartQuiz}
-        style={{
-          ...globalButtonStyle,
-          backgroundColor: "violet",
-        }}
-        onMouseOver={(e) => {
-          e.currentTarget.style.backgroundColor = "orange"
-          e.currentTarget.style.boxShadow = "none"
-        }}
-        onMouseOut={(e) => {
-          e.currentTarget.style.backgroundColor = "violet"
-          e.currentTarget.style.boxShadow = "0 4px 8px rgb(250, 150, 0, 0.6)"
-        }}
+        style={buttonStyle}
+        onMouseOver={() => setIsHovered(true)}
+        onMouseOut={() => setIsHovered(false)}
       >
         もっかい好かれに行く
       </button>
