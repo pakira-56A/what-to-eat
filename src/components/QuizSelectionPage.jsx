@@ -1,9 +1,17 @@
-import { useState } from 'react';
-import { globalButtonStyle, globalButtonHoverStyle } from '../styles/globalButton';
+import { useState } from "react"
+import {
+  globalButtonStyle,
+  globalButtonHoverStyle
+} from "../styles/globalButton"
 
-export const QuizSelectionPage = ({selectedAnswer, timeCount, quizData, justQuestion, shuffledAnswers}) => {
-
-  const [isHovered, setIsHovered] = useState(false);
+export const QuizSelectionPage = ({
+  selectedAnswer,
+  timeCount,
+  quizData,
+  justQuestion,
+  shuffledAnswers
+}) => {
+  const [isHovered, setIsHovered] = useState(false)
 
   return (
     <div>
@@ -11,7 +19,7 @@ export const QuizSelectionPage = ({selectedAnswer, timeCount, quizData, justQues
         style={{
           fontSize: "30px",
           fontWeight: "bold",
-          color: timeCount <= 2 ? "red" : "orange",
+          color: timeCount <= 2 ? "red" : "orange"
         }}
       >
         {timeCount} 秒以内に
@@ -25,15 +33,29 @@ export const QuizSelectionPage = ({selectedAnswer, timeCount, quizData, justQues
           style={{ width: "auto", height: "250px" }}
         />
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: "15px", width: "230px", margin: "0 auto" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "15px",
+          width: "230px",
+          margin: "0 auto"
+        }}
+      >
         {shuffledAnswers.map((answer, index) => (
           <button
             key={index}
             onClick={() => selectedAnswer(answer)}
             style={{
               ...globalButtonStyle,
-              backgroundColor: isHovered === index ? globalButtonHoverStyle.backgroundColor : "#00BBFF",
-              boxShadow: isHovered === index ? globalButtonHoverStyle.boxShadow : globalButtonStyle.boxShadow,
+              backgroundColor:
+                isHovered === index
+                  ? globalButtonHoverStyle.backgroundColor
+                  : "#00BBFF",
+              boxShadow:
+                isHovered === index
+                  ? globalButtonHoverStyle.boxShadow
+                  : globalButtonStyle.boxShadow
             }}
             onMouseOver={() => setIsHovered(index)}
             onMouseOut={() => setIsHovered(null)}
