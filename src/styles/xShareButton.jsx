@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TwitterShareButton } from 'react-share';
 
 export const XShareButton = ({ quizData, score }) => {
-  const shareText = `${quizData.length}人中、${score}人に好かれた🧡\n #高速ご挨拶クイズ \n`;
+  const shareText = `\n \n ${quizData.length}人中、${score}人に好かれた🧡\n #高速ご挨拶クイズ\n `;
   const [isHovered, setIsHovered] = useState(false);
 
   return (
