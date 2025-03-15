@@ -6,8 +6,10 @@
   そこから手動で修正やコンポーネント化を加えたり、基礎的なJavaScriptの書き方を模写して学んでゆきました。
 
 　
-### 当サービス概要
-**とにかく高速でご挨拶をして、好かれてください！！**　遊んでいただいた皆様の感想はこちら → [#高速ご挨拶クイズ](https://x.com/search?q=%23高速ご挨拶クイズ&src=recent_search_click&f=live)
-
-  [![Image from Gyazo](https://i.gyazo.com/3a8deb56aab2de2b7128fc621cbd3dc7.gif)](https://gyazo.com/3a8deb56aab2de2b7128fc621cbd3dc7)
+## 当サービス概要
+- **とにかく高速でご挨拶をして、好かれてください！！**  
+  [![Image from Gyazo](https://i.gyazo.com/f93c87e8ebf9e5fdb0110e38394d9aba.gif)](https://gyazo.com/f93c87e8ebf9e5fdb0110e38394d9aba)
+- 遊んでいただいた皆様の感想はこちら → [#高速ご挨拶クイズ](https://x.com/search?q=%23高速ご挨拶クイズ&src=recent_search_click&f=live)
+  - 以下はまだX（旧Twiiter）にキャッシュが残ってて、OGPが反映できてない頃に撮影したものです
+    [![Image from Gyazo](https://i.gyazo.com/3a8deb56aab2de2b7128fc621cbd3dc7.gif)](https://gyazo.com/3a8deb56aab2de2b7128fc621cbd3dc7)
   
