@@ -11,7 +11,13 @@
 - 遊んでいただいた皆様の感想はこちら → [#高速ご挨拶クイズ](https://x.com/search?q=%23高速ご挨拶クイズ&src=recent_search_click&f=live)
   - 以下はまだX（旧Twiiter）にキャッシュが残ってて、OGPが反映できてない頃に撮影したものです
     <img src="https://i.gyazo.com/3a8deb56aab2de2b7128fc621cbd3dc7.gif" alt="Image from Gyazo" width="500"/>
-  
+
+|       | 技術スタック                         |
+|---------|------------------------------|
+| 技術    | React、CSS    |
+| デプロイ| Vercel                      |
+| 機能    | Xシェア機能、OGP機能      |
+
 ## 今回のアプリで、Reactキャッチアップとして学んだ事
 - Reactのコンポーネント化の際に渡す`props`の存在
 - コンポーネントの呼び出し方（エクスポートの仕方）
