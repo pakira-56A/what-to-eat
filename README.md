@@ -12,7 +12,7 @@
   - 以下はまだX（旧Twiiter）にキャッシュが残ってて、OGPが反映できてない頃に撮影したものです
     <img src="https://i.gyazo.com/3a8deb56aab2de2b7128fc621cbd3dc7.gif" alt="Image from Gyazo" width="500"/>
   
-## 学んだこと
+## 今回のアプリで、Reactキャッチアップとして学んだ事
 - Reactのコンポーネント化の際に渡す`props`の存在
 - コンポーネントの呼び出し方（エクスポートの仕方）
 - コンポーネント化すると、１つのファイルの中でHTML/CSS/JavaScriptの記載がまとまっており、管理しやすいと感じた
