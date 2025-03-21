@@ -10,7 +10,7 @@
     
 ## 当サービス概要
 - **とにかく高速でご挨拶をして、好かれてください！！**  
-  [![Image from Gyazo](https://i.gyazo.com/f93c87e8ebf9e5fdb0110e38394d9aba.gif)](https://gyazo.com/f93c87e8ebf9e5fdb0110e38394d9aba)
+  <img src="https://i.gyazo.com/f93c87e8ebf9e5fdb0110e38394d9aba.gif" alt="Image from Gyazo" height="500"/>
 - 遊んでいただいた皆様の感想はこちら → [#高速ご挨拶クイズ](https://x.com/search?q=%23高速ご挨拶クイズ&src=recent_search_click&f=live)  
   <img src="https://gyazo.com/c02a5eabaf5791b331600f1c6ba07635.gif" alt="Image from Gyazo" width="500"/>
 
